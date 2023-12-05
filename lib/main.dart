@@ -93,7 +93,62 @@ class BuyNowPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold( );
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Buy Now', selectionColor: Colors.purple),
+        backgroundColor: Color.fromARGB(255, 74, 138, 85)   ),
+      backgroundColor: Color.fromARGB(255, 176, 229, 203),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const Text(
+              'Choose Payment Method',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 16),
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                PaymentMethodButton('BKash', 'images/bkash.png'),
+                PaymentMethodButton('Rocket', 'images/rocket.png'),
+                PaymentMethodButton('Visa', 'images/visa.png'),
+                PaymentMethodButton('amex', 'images/amex.png'),
+              ],
+            ),
+            const SizedBox(height: 16),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('Go Back'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+class PaymentMethodButton extends StatelessWidget {
+  final String name;
+  final String imagePath;
+
+  const PaymentMethodButton(this.name, this.imagePath, {super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Image.asset(
+          imagePath,
+          width: 50,
+          height: 50,
+        ),
+        const SizedBox(height: 8),
+        Text(name),
+      ],
+    );
   }
 }
 
